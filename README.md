@@ -8,6 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   Component Tree management
   React Forms
   Complex React State and Hooks
+  React Dependencies - Material UI
   
 ## Available Scripts
 
