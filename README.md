@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# React Concepts:
+  React Components and Props
+  Iterative rendering by Mapping Components and Data
+  Component Tree management
+  React Forms
+  Complex React State and Hooks
+  
 ## Available Scripts
 
 In the project directory, you can run:
