@@ -1,11 +1,14 @@
 import React from "react";
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
+import Zoom from '@mui/material/Zoom';
 
 function CreateNote(props) {
     const [note, setNote] =  React.useState({
         title: "",
         content: ""
     })
-
+    const [expand, setExpand] = React.useState(false);
     function updateNote(event){
         setNote((prev) => {
             //prev holds the previous value of note
@@ -18,18 +21,28 @@ function CreateNote(props) {
             }
         })
     }
+    function expandInputArea() {
+      setExpand(true);
+    }
     
   return (
     <div>
-      <form onSubmit = {(event)=> {
-        props.addNote(note)
-        setNote({title: "", content: ""})
+      <form onClick = {expandInputArea} className = "create-note" onSubmit = {(event) => {
+        setExpand(false);
         event.preventDefault();
-        //default behavior of form refreshes the webpage on every submit, so we prevent that
       }}>
-        <input onChange = {updateNote} name="title" placeholder="Title" value = {note.title}/>
-        <textarea onChange = {updateNote} name="content" placeholder="Take a note..." rows="3" value = {note.content}/>
-        <button>Add</button>
+        {expand && <input onChange = {updateNote} name="title" placeholder="Title" value = {note.title}/>}
+        <textarea onChange = {updateNote} name="content" placeholder="Take a note..." rows= {expand? "3" : "1"} value = {note.content}/>
+        
+          <Zoom in = {expand}>
+            <Fab type = "submit" onClick = {()=> {
+                props.addNote(note)
+                setNote({title: "", content: ""})
+              }} >
+              <AddIcon />
+            </Fab>
+          </Zoom>
+        
       </form>
     </div>
   );
